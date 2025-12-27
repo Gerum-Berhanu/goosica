@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/auto.css">
+    <link rel="stylesheet" href="/static/css/dot-spinner.css">
+    <link rel="shortcut icon" href="/static/image/logo/logo-light.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="flex flex-col justify-center content-center h-lvh">
+    <div class="relative flex flex-col justify-center items-center h-full w-full bg-zinc-900">
+
+        <!-- ROW 1 -->
+        <div class="w-full flex justify-center content-center p-8 bg-green-500">
+
+            <div class="flex justify-center content-center w-full">
+
+                <!-- Search -->
+                <div class="flex flex-initial w-full lg:w-2/5 z-30">
+                    <input type="text" id="search-input"
+                        class="p-4 border-y-2 border-l-2 border-green-200 rounded-l-lg outline-none bg-green-200/50 flex-auto w-3/4"
+                        required>
+                    <button id="search-button"
+                        class="text-xl p-4 rounded-r-lg bg-green-200 w-1/4 cursor-pointer hover:text-green-500 active:bg-zinc-900">Search</button>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ROW 2 -->
+        <div class="flex w-full h-full overflow-hidden">
+            <!-- sidebar -->
+            <div class="hidden sm:flex w-1/4 h-full bg-zinc-800">
+
+            </div>
+
+            <!-- body -->
+            <div id="song-list-cont" class="flex flex-col gap-4 p-8 sm:w-3/4 w-full h-full overflow-auto">
+
+                {%if data%}
+                {%for song in data%}
+                <div
+                    class="flex gap-4 lg:flex-row flex-col justify-between w-full bg-zinc-800 rounded-3xl p-4 shadow-md">
+                    <div
+                        class="flex lg:flex-col flex-row lg:justify-center justify-between lg:items-start items-center">
+                        <span class="text-lg text-green-500">{{song['title']}}</span>
+                        <span class="text-sm text-green-500/75">{{song['uploader']}}</span>
+                    </div>
+
+                    <div class="audio-cont">
+                        <audio src="{{song['path']}}" controls>
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+                {%endfor%}
+                {%endif%}
+            </div>
+        </div>
+
+
+
+        <!-- Search Results -->
+        <div id="search-result-parent-cont"
+            class="hidden absolute w-full h-full flex justify-center items-center bg-black/75 z-20">
+
+            <div id="search-result-cont"
+                class="flex flex-col items-center w-1/2 h-1/2 bg-zinc-800 shadow-lg shadow-green-500 rounded-3xl p-4 gap-4 overflow-auto">
+
+
+            </div>
+        </div>
+
+
+
+        <!-- TODO: REMOVE THIS AS IT IS USELESS -->
+        <!-- Loading screen -->
+        <div id="loading-screen"
+            class="hidden absolute w-full h-full flex justify-center items-center bg-white/75 z-40">
+            <div class="dot-spinner">
+                <div class="dot-spinner__dot"></div>
+                <div class="dot-spinner__dot"></div>
+                <div class="dot-spinner__dot"></div>
+                <div class="dot-spinner__dot"></div>
+                <div class="dot-spinner__dot"></div>
+                <div class="dot-spinner__dot"></div>
+                <div class="dot-spinner__dot"></div>
+                <div class="dot-spinner__dot"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</body>
+<script src="/static/js/script.js"></script>
+
+</html>

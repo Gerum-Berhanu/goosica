@@ -1,0 +1,19 @@
+# Database
+sql_app.db
+
+# Environment variable
+.env
+
+# Python cache
+**/__pycache__/
+*.pyc
+
+# Virtual environment
+goosica-venv/
+
+# ---
+
+app/bin/*
+static/audio/*
+static/note/
+test.py
